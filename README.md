@@ -1,7 +1,7 @@
 # aframe-music-visualizer
 
-Demo: 
+Demo: https://nithin005.github.io/aframe-music-visualizer/
 
 
 
-# ![demo_gif](D:\code\git\aframe-music-visualizer\assets\demo_gif.gif)
+# ![demo_gif](./assets/demo-gif.gif)
