@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-audioanalyser-component@5.4.0/dist/aframe-audioanalyser-component.min.js"></script>
+    <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lrc-file-parser@1.0.5/dist/lrc-file-parser.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/noisejs-umd@1.0.0/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/shader-particle-engine@1.0.6/build/SPE.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+
+
+    <script src="./components/components.js"></script>
+    <script src="./components/inspector-button.js"></script>
+  </head>
+  <body>
+    <a-scene inspector-button stats>
+      <a-assets>
+        <img id="gaiaspace" src="./assets/gaiaspace.png" />
+        <audio id="song" loop></audio>
+        <a-asset-item
+          id="Otriangle"
+          src="./assets/Otriangle.obj"
+        ></a-asset-item>
+<a-mixin id='triangle' obj-model='obj:#Otriangle' material='transparent:true;opacity:0.5' move-z animation="property: components.material.material.opacity; dur: 1000; easing: easeInOutSine; from: 0.5; to: 0"></a-mixin>
+        <a-mixin
+          id="text"
+          text="align:center;width:2"
+          animation="property: text.opacity; dur: 3000; easing: easeInOutSine; from: 1; to: 0"
+        ></a-mixin>
+      </a-assets>
+
+    
+        <a-entity
+          id="analyser"
+          position="0 0 -100"
+          audioanalyser="src: #song;beatDetectionThrottle: 0;beatDetectionDecay: 0.98"
+          generate-shapes
+          rotate-z
+        ></a-entity>
+ 
+        <a-entity position="0 1.6 -2" lrc="song:#song"></a-entity>
+
+      <a-entity rotation='45 0 0'>
+        <a-entity  move-in-circle="center:0 0 0;radius: 100;dur:10000;loop:true" move-random-y='sensitivity:0.02;scale:50;yseed:5'>
+            <a-entity spe></a-entity>
+        </a-entity>
+      </a-entity>
+      <a-entity move-random-y='sensitivity:0.02;scale:50;yseed:5' move-in-circle="center:0 0 0;radius: 100;dur:10000;loop:true" position='0 0 0' spe></a-entity>
+      <a-entity move-random-y='sensitivity:0.03;scale:50;yseed:1' move-in-circle="center:0 0 0;radius: 100;dur:10000;loop:true" position='0 0 0' spe></a-entity>
+      <a-entity position="0 2.25 -15" particle-system="preset: dust"></a-entity>
+
+      <a-sky src="#gaiaspace" radius="2000" opacity="0.2"></a-sky>
+      <a-sky color="#000000" radius="10000"></a-sky>
+    </a-scene>
+    <button id='play' onclick="document.getElementById('song').play();">play</button>
+  </body>
+</html>
