@@ -4,4 +4,4 @@ Demo: https://nithin005.github.io/aframe-music-visualizer/
 
 
 
-# ![demo_gif](./assets/demo-gif.gif)
+# ![demo_gif](./assets/demo_gif.gif)
